@@ -1,0 +1,27 @@
+<main class="main">
+    <div class="content">
+        <div class="left-side">
+            <h1>Hello Friend</h1>
+            <p>Congratulations! Die Seite scheint zu funktionieren! 🎉</p>
+        </div>
+
+        <div class="divider" role="separator" aria-label="Divider"></div>
+
+        <div class="right-side">
+            <h2>Bitte melde dich an!</h2>
+            <form [formGroup]="authForm" class="example-form">
+                <mat-form-field class="example-full-width">
+                    <mat-label>Username</mat-label>
+                    <input matInput formControlName="userName" placeholder="Username">
+                </mat-form-field>
+                <mat-form-field class="example-full-width">
+                    <mat-label>Password</mat-label>
+                    <input type="password" matInput formControlName="password" placeholder="Password">
+                </mat-form-field>
+                <button mat-raised-button color="primary" (click)="try_login()">Login</button>
+                <button mat-raised-button color="primary" (click)="try_register()" class="regButton">Register New Account</button>
+            </form>
+            
+        </div>
+    </div>
+</main>

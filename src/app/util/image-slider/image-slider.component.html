@@ -1,0 +1,7 @@
+<div class="slideshow-container">
+    <div class="slideshow-image" *ngIf="images.length > 0">
+      <img [src]="images[currentImageIndex]"/>
+    </div>
+    <button class="prev" (click)="prevImage()">&#10094;</button>
+    <button class="next" (click)="nextImage()">&#10095;</button>
+</div>

@@ -1,0 +1,23 @@
+.ueberschriftVerzeichnis{
+    font-size: 60px; 
+    font-weight: 1100;
+    line-height: 2;
+    font-family: 'Lobster', cursive;
+    color:  blue;
+}
+
+.container {
+    display: flex;
+    justify-content: center;
+    padding-top: 30vh;
+    background: #eee;
+    height: 100vh;
+}
+
+.inhalt {
+    background: #eee;
+}
+
+h2 {
+    color:  blue;
+}

@@ -1,0 +1,21 @@
+<mat-tab-group mat-stretch-tabs="true" mat-align-tabs="start">
+
+  <mat-tab label="Meine Gerichte">
+    <ng-template matTabContent>
+      <app-gerichte-my [startVariable]="'meine'"></app-gerichte-my>
+    </ng-template>
+  </mat-tab>
+
+  <mat-tab label="Alle Gerichte">
+    <ng-template matTabContent>
+       <app-gerichte-my [startVariable]="'alle'"></app-gerichte-my>
+    </ng-template>
+  </mat-tab>
+
+  <mat-tab label="Gericht hinzufügen">
+    <ng-template matTabContent>
+      <app-add-gericht></app-add-gericht>
+    </ng-template>
+  </mat-tab>
+
+</mat-tab-group>

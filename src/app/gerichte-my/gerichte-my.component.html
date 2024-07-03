@@ -1,0 +1,60 @@
+<mat-drawer-container class="container">
+
+    <mat-drawer mode="side" class="verzeichnis" opened>
+
+        <span class="ueberschriftVerzeichnis">Verfügbare Gerichte: </span>
+
+        <mat-nav-list *ngFor="let geladenesGericht of geladeneGerichte; index as i">
+            <a mat-list-item (click)="changeChoice(i)">
+                  <span matLine class="item" >{{i+1}}. {{geladenesGericht.name}}</span>
+            </a>
+        </mat-nav-list>
+
+    </mat-drawer>
+
+    <mat-drawer-content class="inhalt">
+
+        <app-image-slider *ngIf="gewaehltesGericht && gewaehltesGericht.images.length != 0" [images]="images"></app-image-slider>
+ 
+        
+        <div class="nameAuthor">
+            <span matLine class="name" >{{gewaehltesGericht?.name || "Bitte wähle ein Gericht!"}}</span>
+            <span matLine class="author" *ngIf="gewaehltesGericht"> von {{gewaehltesGericht.author}}</span>
+        </div>
+
+        <div class="content-flex">
+        <div class="table">
+        <table mat-table  *ngIf="gewaehltesGericht" [dataSource]="gewaehltesGericht.zutaten" class="mat-elevation-z8">
+              
+            <ng-container matColumnDef="name">
+                <th mat-header-cell *matHeaderCellDef style="font-size: 26px; font-weight: bold;"> Zutat </th>
+                <td mat-cell *matCellDef="let element" style="font-size: 16px; font-style: italic;"> {{element.name}} </td>
+            </ng-container>
+              
+            <ng-container matColumnDef="weight">
+                <th mat-header-cell *matHeaderCellDef style="font-size: 26px; font-weight: bold;"> Menge </th>
+                <td mat-cell *matCellDef="let element" style="font-size: 16px; font-style: italic;"> {{element.menge}} {{element.einheit}} </td>
+            </ng-container>
+
+            <tr mat-header-row *matHeaderRowDef="['name', 'weight']"></tr>
+            <tr mat-row *matRowDef="let row; columns: ['name', 'weight'];"></tr>
+         </table>
+        </div>
+           
+        <div class="mat-card">
+        <mat-card *ngIf="gewaehltesGericht" appearance="outlined">
+            <mat-card-header>
+                <mat-card-title style="font-size: 26px; font-weight: bold;">Zubereitung:</mat-card-title>
+            </mat-card-header>
+                <mat-card-content>
+                    <p style="font-size: 17px; font-style: italic; font-family: 'Roboto', serif;">
+                        <br> {{gewaehltesGericht.anleitung}}
+                    </p>
+            </mat-card-content>
+        </mat-card>
+        </div>
+        </div>
+        
+    </mat-drawer-content>
+</mat-drawer-container>
+  

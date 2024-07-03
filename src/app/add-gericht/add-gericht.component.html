@@ -1,0 +1,99 @@
+<mat-drawer-container class="container">
+
+    <mat-drawer mode="side" class="verzeichnis" opened>
+
+        <span class="ueberschriftVerzeichnis">Add Tags (max 10): </span>
+        <br>
+        <mat-form-field class="zutat-width">
+            <mat-label>New Tag</mat-label>
+            <input type="text" id="tagId" matInput>
+        </mat-form-field>
+        <button mat-raised-button color="primary" (click)="addTag()" class="tagButton">Add New</button>
+        <div *ngFor="let tag of tags; let i = index">
+            <div class="tags">
+                <button mat-stroked-button color="primary">{{tag}}</button>
+                <button mat-raised-button color="warn" (click)="removeTag(i)" class="tagButton">Delete Tag</button>
+            </div>
+        </div>
+          
+
+    </mat-drawer>
+
+    <mat-drawer-content class="inhalt">
+
+        <span matLine class="name" >Füge ein neues Gericht hinzu!</span>
+        <br>
+
+        <div class="formContainer">
+            <form [formGroup]="gerichtForm">
+
+                <span matLine class="kleineUeberschrift">Name:</span>
+
+                <mat-form-field class="example-full-width">
+                    <mat-label>Name des Gerichts</mat-label>
+                    <input type="text" formControlName="gerichtName" matInput placeholder="Ein leckeres etwas">
+                </mat-form-field>
+                
+                  
+                    <div formArrayName="zutaten" class="example-full-width">
+                        <span matLine class="kleineUeberschrift">Zutaten:</span>
+                      <div *ngFor="let zutat of getZutaten().controls; let i = index" class="example-full-width">
+                        
+                        <div [formGroupName]="i">
+                           
+                            
+                                <mat-form-field  class="zutat">
+                                    <mat-label>Bezeichnung</mat-label>
+                                    <input type="text" formControlName="name" matInput>
+                                </mat-form-field>
+                           
+                                <mat-form-field class="zutat-menge">
+                                    <mat-label>Menge</mat-label>
+                                    <input type="number" formControlName="menge" matInput>
+                                </mat-form-field>
+
+                                <mat-form-field class="zutat-einheit">
+                                    <mat-label>Einheit</mat-label>
+                                    <mat-select formControlName="einheit">
+                                      <mat-option value="g">Gramm</mat-option>
+                                      <mat-option value="ml">Milliliter</mat-option>
+                                      <mat-option value="Stk.">Stück</mat-option>
+                                      <mat-option value="EL">Esslöfel</mat-option>
+                                      <mat-option value="TL">Teelöfel</mat-option>
+                                      <mat-option value="Prise">Prise</mat-option>
+                                    </mat-select>
+                                  </mat-form-field>
+                           
+                                <button mat-raised-button color="primary" (click)="addZutat()" class="addButton">Add New</button>
+                           
+                                <button mat-raised-button color="warn" (click)="removeZutat(i)">Remove</button>
+                          
+                        </div>
+                    
+                    </div>
+                </div>
+
+                <span matLine class="kleineUeberschrift">Anleitung:</span>
+                
+                <mat-form-field class="example-full-width">
+                      <mat-label>Zubereitungs Anleitung</mat-label>
+                      <textarea type="text" formControlName="gerichtAnleitung" matInput placeholder="Einfach alles in einen Topf!"></textarea>
+                  </mat-form-field>
+
+                <div>
+                    <input type="file" (change)="onFilesSelected($event)" multiple />
+                    <button [disabled]="!selectedFiles.length">Upload</button>
+                </div>
+                <button type="submit" mat-raised-button color="primary" [disabled]="isButtonDisabled" (click)="uploadGericht()" style="margin: 5%;">Gericht Hinzufügen!</button>
+            </form>
+
+            <span matLine class="kleineUeberschrift">Aktuelle Bilder:</span>
+
+            <div *ngFor="let base64Image of base64Images">
+                <img [src]="base64Image" alt="Uploaded Image" style="max-width: 200px; max-height: 200px; margin: 10px;" />
+            </div>
+        </div>
+        
+    </mat-drawer-content>
+</mat-drawer-container>
+  

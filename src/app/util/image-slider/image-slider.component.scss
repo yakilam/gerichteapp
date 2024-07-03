@@ -1,0 +1,51 @@
+.slideshow-container {
+    position: relative;
+    width: 800px;  /* Setzen Sie die gewünschte feste Breite */
+    height: 400px; /* Setzen Sie die gewünschte feste Höhe */
+    margin: auto;
+    overflow: hidden;
+    background-color: inherit; /* Optional: Hintergrundfarbe */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  .slideshow-image img {
+    max-width: 100%;
+    max-height: 300px;
+    object-fit: contain;
+     /* Beibehaltung des Seitenverhältnisses */
+  }
+  
+  .prev, .next {
+    cursor: pointer;
+    position: absolute;
+    top: 50%;
+    width: auto;
+    padding: 16px;
+    margin-top: -22px;
+    color: rgb(10, 34, 170);
+    font-size: 40px;
+    transition: 0.4s ease;
+    user-select: none;
+    z-index: 10;
+    background-color: transparent;
+    border: none;
+    border-top-right-radius: 10px; /* Abgerundete Ecke oben rechts */
+    border-bottom-right-radius: 10px;
+    border-top-left-radius: 10px; /* Abgerundete Ecke oben links */
+    border-bottom-left-radius: 10px;
+  }
+  
+  .next {
+    right: 0;
+  }
+  .prev {
+    left: 0;
+  }
+  
+  .prev:hover, .next:hover {
+    background-color: rgba(109, 107, 107, 0.8);
+  }
+  
+  

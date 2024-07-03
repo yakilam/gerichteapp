@@ -1,0 +1,95 @@
+.container {
+    width: 100%;
+    font-family: 'Lobster', cursive;
+    background: #eee;
+    min-height: 100vh;
+    display: flex;
+  }
+
+.verzeichnis{
+    width: 25%;
+    background: #dfdbdb;
+    color: black;
+    text-align: center;
+    overflow-y: auto;
+    height: 100vh;
+    box-sizing: border-box;
+}
+
+.inhalt{
+    width: 75%;
+    overflow-y: auto;
+    height: 100vh;
+    box-sizing: border-box;
+}
+
+.ueberschriftVerzeichnis{
+    font-size: 35px; 
+    font-weight: 1100;
+    line-height: 2;
+}
+
+.item{
+    text-align: center;
+    background: #dfdbdb;
+    color:  blue;
+    font-weight: 500;
+    font-size: 22px;
+    font-family: 'Playfair Display', serif;
+}
+
+.name{
+    text-align: center;
+    color:  blue;
+    font-weight: 1000;
+    font-size: 60px;
+    margin: 0 auto; 
+}
+
+.author{
+    color:  orangered;
+    font-weight: 700;
+    font-size: 30px;
+    position: absolute; 
+    right: 10%;
+}
+
+.nameAuthor{
+    object-fit: contain;
+    align-items: center;
+    overflow: hidden;
+    line-height: 2;
+    display: flex;
+    position: relative;
+}
+
+.bild{
+    width: 100%;
+    height: auto;
+    max-width: 100%;
+    max-height: 300px;
+    object-fit: contain;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+}
+
+.table {
+    width: 40%;
+    box-sizing: border-box;
+    padding-left: 1%;
+}
+
+.mat-card {
+    width: 60%;
+    box-sizing: border-box;
+    padding-left: 1%;
+    padding-right: 1%;
+}
+
+.content-flex {
+    display: flex;
+    width: 100%;
+    box-sizing: border-box;
+}
