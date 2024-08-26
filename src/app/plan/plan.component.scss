@@ -1,0 +1,41 @@
+mat-checkbox {
+    display: block;
+    margin: 4px 0;
+  }
+
+  .containerForm {
+    display: flex;
+  }
+
+  .zutatenContainer{
+    width: 60%;
+    padding: 10px;
+    margin: 5px;
+    background-color: lightblue;
+    text-align: left;
+  }
+
+  .daysContainer{
+    width: 40%;
+    padding: 10px;
+    margin: 5px;
+    background-color: lightblue;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .days{
+    width: 60%;
+    margin-top: 10%;
+  }
+
+  .createButton{
+    width: 60%;
+    margin-top: 5%;
+  }
+
+  .hidden{
+    display: none;
+  }

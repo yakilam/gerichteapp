@@ -1,0 +1,86 @@
+<mat-drawer-container class="container">
+
+    <mat-drawer mode="side" class="verzeichnis" opened>
+        <span class="ueberschriftVerzeichnis">Dein Vorrat: </span>
+        <div class="zutatenTable">
+        <table mat-table [dataSource]="geladeneZutaten" class="mat-elevation-z8">
+              
+            <ng-container matColumnDef="name">
+                <th mat-header-cell *matHeaderCellDef style="font-size: 26px; font-weight: bold;"> Zutat </th>
+                <td mat-cell *matCellDef="let element" style="font-size: 16px; font-style: italic;"> {{element.name}} </td>
+            </ng-container>
+              
+            <ng-container matColumnDef="weight">
+                <th mat-header-cell *matHeaderCellDef style="font-size: 26px; font-weight: bold;"> Menge </th>
+                <td mat-cell *matCellDef="let element" style="font-size: 16px; font-style: italic;"> {{element.menge}} {{element.einheit}} </td>
+            </ng-container>
+
+            <tr mat-header-row *matHeaderRowDef="['name', 'weight']"></tr>
+            <tr mat-row *matRowDef="let row; columns: ['name', 'weight'];"></tr>
+         </table>
+        </div>
+
+    </mat-drawer>
+
+    <mat-drawer-content class="inhalt">
+        <div class="formContainer">
+            <span class="ueberschriftAdd">Zutaten hinzufügen: </span>
+            <form [formGroup]="zutatForm">
+            <mat-form-field  class="zutat">
+                <mat-label>Bezeichnung</mat-label>
+                <input type="text" formControlName="name" matInput>
+            </mat-form-field>
+       
+            <mat-form-field class="zutat-menge">
+                <mat-label>Menge</mat-label>
+                <input type="number" formControlName="menge" matInput>
+            </mat-form-field>
+
+            <mat-form-field class="zutat-einheit">
+                <mat-label>Einheit</mat-label>
+                <mat-select formControlName="einheit">
+                  <mat-option value="g">Gramm</mat-option>
+                  <mat-option value="ml">Milliliter</mat-option>
+                  <mat-option value="Stk.">Stück</mat-option>
+                  <mat-option value="EL">Esslöfel</mat-option>
+                  <mat-option value="TL">Teelöfel</mat-option>
+                  <mat-option value="Prise">Prise</mat-option>
+                </mat-select>
+            </mat-form-field>
+            <br>
+            <button type="submit" mat-raised-button color="primary" (click)="addZutat()" class="addButton">Add to List</button>
+        </form>
+        </div>
+
+        <div class="formContainer">
+            <span class="ueberschriftRemove">Zutaten entfernen: </span>
+            <form [formGroup]="zutatFormRemove">
+            <mat-form-field  class="zutat">
+                <mat-label>Bezeichnung</mat-label>
+                <input type="text" formControlName="name" matInput>
+            </mat-form-field>
+       
+            <mat-form-field class="zutat-menge">
+                <mat-label>Menge</mat-label>
+                <input type="number" formControlName="menge" matInput>
+            </mat-form-field>
+
+            <mat-form-field class="zutat-einheit">
+                <mat-label>Einheit</mat-label>
+                <mat-select formControlName="einheit">
+                  <mat-option value="g">Gramm</mat-option>
+                  <mat-option value="ml">Milliliter</mat-option>
+                  <mat-option value="Stk.">Stück</mat-option>
+                  <mat-option value="EL">Esslöfel</mat-option>
+                  <mat-option value="TL">Teelöfel</mat-option>
+                  <mat-option value="Prise">Prise</mat-option>
+                </mat-select>
+            </mat-form-field>
+       
+            <button type="submit" mat-raised-button color="warn" (click)="removeZutat()">Remove from List</button>
+        </form>
+        </div>
+    </mat-drawer-content>
+
+</mat-drawer-container>
+  

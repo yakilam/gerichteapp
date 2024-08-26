@@ -8,7 +8,7 @@ import { NgFor } from '@angular/common';
 import { MatChipsModule } from '@angular/material/chips';
 import { MatSnackBar} from '@angular/material/snack-bar';
 import { GerichteMyService } from '../gerichte-my/services/gerichte-my.service';
-import  {MatSelectModule } from '@angular/material/select';
+import { MatSelectModule } from '@angular/material/select';
 
 
 

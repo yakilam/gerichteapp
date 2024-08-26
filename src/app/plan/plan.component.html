@@ -1,0 +1,31 @@
+<div class="form">
+  <form [formGroup]="zutatenForm">
+    <div class="containerForm">
+  
+      <div class="zutatenContainer">
+        <h1>Wähle die Zutaten die du nutzen möchtest:</h1>
+    
+        <div formArrayName="zutaten">
+          <div *ngFor="let control of getZutaten().controls; let i = index">
+            <mat-checkbox [formControlName]="i">{{ geladeneZutaten[i].name }}</mat-checkbox>
+          </div>
+        </div>
+      </div>
+
+      <div class="daysContainer">
+        <h1 class="daysHeadline">Für wie viele Tage möchtest du einen Plan erstellen?</h1>
+        <mat-form-field class="days">
+          <mat-label>Anzahl</mat-label>
+          <input type="number" formControlName="days" matInput>
+        </mat-form-field>
+
+        <button mat-raised-button color="primary" (click)="createPlan()" class="createButton">Essensplan erstellen!</button>
+      </div>
+
+    </div>
+  </form>
+</div>
+
+<div id="plan" class="hidden">
+  <h1>Content to show after function execution</h1>
+</div>
