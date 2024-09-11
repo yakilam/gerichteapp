@@ -1,9 +1,9 @@
 import { Injectable } from '@angular/core';
-import { GerichtZutat } from '../../gerichte-my/gerichtZutat';
+import { GerichtZutat } from '../../interfaces/gerichtZutat';
 import { Subject } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
 import { PlanRequest } from '../planRequest';
-import { GerichtResponse } from '../../gerichte-my/gerichtResponse';
+import { GerichtResponse } from '../../interfaces/gerichtResponse';
 
 @Injectable({
   providedIn: 'root'
@@ -24,7 +24,6 @@ export class PlanService {
   createPlan(planRequest: PlanRequest) {
     this.http.post<GerichtResponse[]>('http://localhost:8080/api/v1/gerichte/my/myPlan', planRequest).subscribe(res => {
       this.geladenerPlan.next(res);
-      console.log(res);
     });
   }
 }

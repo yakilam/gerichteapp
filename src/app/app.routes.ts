@@ -6,6 +6,7 @@ import { loginGuard } from './guards/login.guard';
 import { ProfilComponent } from './profil/profil.component';
 import { VorratComponent } from './vorrat/vorrat.component';
 import { PlanComponent } from './plan/plan.component';
+import { MyPlanComponent } from './my-plan/my-plan.component';
 
 export const routes: Routes = [
     {path: 'nav', component: NavComponent, canActivate: [loginGuard]},
@@ -13,6 +14,7 @@ export const routes: Routes = [
     {path: 'profil', component: ProfilComponent, canActivate: [loginGuard]},
     {path: 'vorrat', component: VorratComponent, canActivate: [loginGuard]},
     {path: 'plan', component: PlanComponent, canActivate: [loginGuard]},
+    {path: 'myPlan', component: MyPlanComponent, canActivate: [loginGuard]},
     {path: 'login', component: LoginComponent},
     {path: '', redirectTo: '/login', pathMatch: "full"},
     { path: '**', redirectTo: 'login'}

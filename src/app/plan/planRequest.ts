@@ -1,4 +1,4 @@
-import { GerichtZutat } from "../gerichte-my/gerichtZutat";
+import { GerichtZutat } from "../interfaces/gerichtZutat";
 
 export interface PlanRequest {
     days: number;

@@ -1,3 +1,4 @@
+<div>
 <div class="form">
   <form [formGroup]="zutatenForm">
     <div class="containerForm">
@@ -26,6 +27,8 @@
   </form>
 </div>
 
-<div id="plan" class="hidden">
-  <h1>Content to show after function execution</h1>
+<div *ngIf="isVisible">
+  <app-gerichte-list [geladeneGerichte]="proposedPlan" [settings]="'createPlan'"></app-gerichte-list>
+</div>
+
 </div>

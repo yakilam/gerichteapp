@@ -27,6 +27,7 @@ export class LoginService {
   }
 
   login(values: Object) {
+    localStorage.removeItem("token");
     this.http.post<IToken>('http://localhost:8080/api/v1/auth/authentication', values, { observe: 'response' }).subscribe(res => {
       if(res.ok && res.body != null){
         this.token = res.body;

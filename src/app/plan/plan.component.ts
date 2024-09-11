@@ -1,26 +1,33 @@
 import { Component } from '@angular/core';
-import { GerichtZutat } from '../gerichte-my/gerichtZutat';
+import { GerichtZutat } from '../interfaces/gerichtZutat';
 import { PlanService } from './services/plan.service';
 import { PlanRequest } from './planRequest';
 import { FormArray, FormBuilder, FormControl, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
 import { MatCheckboxModule } from '@angular/material/checkbox';
-import { NgFor } from '@angular/common';
+import { NgFor, NgIf } from '@angular/common';
 import { MatFormFieldModule } from '@angular/material/form-field'; 
 import { MatInputModule } from '@angular/material/input';
 import { MatButtonModule } from '@angular/material/button';
 import { MatSnackBar} from '@angular/material/snack-bar';
+import { GerichteListComponent } from "../gerichte-list/gerichte-list.component";
+import { GerichtResponse } from '../interfaces/gerichtResponse';
+import { MatTabsModule } from '@angular/material/tabs';
 
 @Component({
   selector: 'app-plan',
   standalone: true,
   imports: [
+    MatTabsModule,
     MatButtonModule,
     MatInputModule,
     NgFor,
+    NgIf,
     FormsModule,
     ReactiveFormsModule,
     MatCheckboxModule,
-    MatFormFieldModule],
+    MatFormFieldModule,
+    GerichteListComponent
+],
   templateUrl: './plan.component.html',
   styleUrl: './plan.component.scss'
 })
@@ -28,14 +35,20 @@ export class PlanComponent {
 
   constructor(private planService: PlanService, private fb: FormBuilder, private snackBar: MatSnackBar) { }
 
+  proposedPlan: GerichtResponse[] = [];
   geladeneZutaten: GerichtZutat[] = [];
   planRequest2!: PlanRequest;
   zutatenForm!: FormGroup;
+  isVisible: boolean = false;
 
   ngOnInit(): void{
     this.planService.geladeneZutaten.subscribe(value => {
       this.geladeneZutaten = value;
       this.createZutatenForm();
+    });
+
+    this.planService.geladenerPlan.subscribe(value => {
+      this.proposedPlan = value;
     });
 
     this.zutatenForm = this.fb.group({
@@ -56,9 +69,7 @@ export class PlanComponent {
         zutaten: checkedZutaten
       }
       this.planService.createPlan(planRequest);
-      console.log(planRequest);
-      var divToShow = document.getElementById('plan');
-      divToShow?.classList.remove('hidden');
+      this.isVisible= true;
     } else {
         this.snackBar.open("Anzahl der Tage vergessen?", "OK", {
           duration: 3000

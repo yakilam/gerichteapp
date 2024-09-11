@@ -2,9 +2,9 @@ import { NgIf } from '@angular/common';
 import { Component } from '@angular/core';
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { VorratService } from './services/vorrat.service';
-import { GerichtZutat } from '../gerichte-my/gerichtZutat';
+import { GerichtZutat } from '../interfaces/gerichtZutat';
 import { MatTableModule } from '@angular/material/table';
-import { FormBuilder, FormGroup, FormControl, Validators, ReactiveFormsModule} from '@angular/forms';
+import { FormBuilder, FormGroup, FormControl, Validators, ReactiveFormsModule ,  FormsModule} from '@angular/forms';
 import { MatButtonModule } from '@angular/material/button';
 import { MatSelectModule } from '@angular/material/select';
 import { MatInputModule } from '@angular/material/input';
@@ -19,6 +19,7 @@ import { MatInputModule } from '@angular/material/input';
     MatButtonModule,
     MatSelectModule,
     MatInputModule,
+    FormsModule,
     NgIf
   ],
   templateUrl: './vorrat.component.html',
@@ -29,22 +30,13 @@ export class VorratComponent {
   constructor(private fb: FormBuilder, private vorratService: VorratService) { }
 
   geladeneZutaten: GerichtZutat[] = [];
-  geladeneZutaten2: GerichtZutat[] = [];
   zutatForm!: FormGroup;
   zutatFormRemove!: FormGroup;
   neueZutat!: GerichtZutat;
 
   ngOnInit(): void{
-    this.vorratService.isLoadedChanged.subscribe(value => {
-      if(value == true){
-        this.geladeneZutaten = this.vorratService.geladeneZutaten;
-      } 
-    });
-    this.vorratService.isLoadedChanged2.subscribe(value => {
-      
-        this.geladeneZutaten2 = value;
-        console.log(this.geladeneZutaten2);
-      
+    this.vorratService.loadedIngredients.subscribe(value => {
+        this.geladeneZutaten = value;
     });
 
     this.zutatForm = this.fb.group({ 
@@ -103,5 +95,9 @@ export class VorratComponent {
         }
       }
     });
+  }
+
+  saveIngredients(){
+    this.vorratService.updateZutaten(this.geladeneZutaten.filter(item => item.menge > 0));
   }
 }

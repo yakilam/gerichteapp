@@ -2,13 +2,13 @@
 
   <mat-tab label="Meine Gerichte">
     <ng-template matTabContent>
-      <app-gerichte-my [startVariable]="'meine'"></app-gerichte-my>
+      <app-gerichte-list [geladeneGerichte]="meineGerichte" [settings]="'meineGerichte'"></app-gerichte-list>
     </ng-template>
   </mat-tab>
 
   <mat-tab label="Alle Gerichte">
     <ng-template matTabContent>
-       <app-gerichte-my [startVariable]="'alle'"></app-gerichte-my>
+       <app-gerichte-list [geladeneGerichte]="alleGerichte" [settings]="'alleGerichte'"></app-gerichte-list>
     </ng-template>
   </mat-tab>
 

@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { GerichtZutat } from '../../gerichte-my/gerichtZutat';
+import { GerichtZutat } from '../../interfaces/gerichtZutat';
 import { Subject } from 'rxjs';
 
 @Injectable({
@@ -10,22 +10,17 @@ export class VorratService {
 
   constructor(private http: HttpClient) { }
 
-  geladeneZutaten: GerichtZutat[] = [];
-  isLoadedChanged: Subject<boolean> = new Subject<boolean>();
-  isLoadedChanged2: Subject<GerichtZutat[]> = new Subject<GerichtZutat[]>();
+  loadedIngredients: Subject<GerichtZutat[]> = new Subject<GerichtZutat[]>();
 
   getMeineZutaten() {
     this.http.get<GerichtZutat[]>('http://localhost:8080/api/v1/users/my/myZutaten').subscribe(res => {
-      this.geladeneZutaten = res;
-      this.isLoadedChanged.next(true);
+      this.loadedIngredients.next(res);
       });
   }
 
   updateZutaten(gerichtZutaten: GerichtZutat[]) {
     this.http.post<GerichtZutat[]>('http://localhost:8080/api/v1/users/my/myZutaten', gerichtZutaten).subscribe(res => {
-      this.geladeneZutaten = res;
-      this.isLoadedChanged.next(true);
-      this.isLoadedChanged2.next(res);
+      this.loadedIngredients.next(res);
     });
   }
 }
